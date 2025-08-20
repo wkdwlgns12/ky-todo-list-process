@@ -20,7 +20,7 @@ function App() {
         console.log(data)
 
       } catch (error) {
-        console.log("가져오기 실패", error)
+        console.log("체크 상태 업데이트 실패", error)
       }
     }
     fetchTodos()
