@@ -131,16 +131,20 @@ function App() {
 
 
   return (
-    <div className='App'>
+  <div className="App">
+    <div className="container">{/* 선택: 없으면 생략 */}
       <Header />
       <TodoEditor onCreate={onCreate} />
       <TodoList
         todos={Array.isArray(todos) ? todos : []}
         onUpdateChecked={onUpdateChecked}
         onUpdateText={onUpdateText}
-        onDelete={onDelete} />
+        onDelete={onDelete}
+      />
     </div>
-  )
+  </div>
+)
+
 }
 
 export default App
