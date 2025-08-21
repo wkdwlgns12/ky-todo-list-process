@@ -112,6 +112,24 @@ function App() {
 
   }
 
+    const onUpdate = async (id, next) => {
+    try {
+      const current = Array.isArray(todos) ? todos.find(t => t._id == id) : null
+      if (!current) throw new Error("해당 ID의 todo가 없습니다.")
+
+      const { data } = await axios.put(`${API}/${id}`, next)
+
+      const updated = data?.updated ?? data?.todo ?? data;
+        setTodos(
+          prev => prev.map(t => (t._id === updated._id ? updated : t))
+        )
+
+    } catch (error) {
+      console.error("Todo update 실패",error)
+    }
+  }
+
+
   return (
     <div className='App'>
       <Header />
