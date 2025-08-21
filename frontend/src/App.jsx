@@ -7,7 +7,7 @@ import TodoList from './components/TodoList'
 function App() {
 
   const [todos, setTodos] = useState([])
-  const API = `${import.meta.env.VITE_API_URL}/api/todos`
+  const API = `${import.meta.env.VITE_API_URL}/api/todos`;
 
   useEffect(() => {
     const fetchTodos = async () => {
