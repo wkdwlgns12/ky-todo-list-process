@@ -8,13 +8,11 @@ dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 3000
 
-// CORS 미들웨어 적용
-app.use(cors({
-    origin: process.env.FRONT_ORIGIN, // 허용할 도메인
-    credentials: true                 // 인증정보(쿠키 등) 포함 여부
-}))
-
 app.use(express.json())
+app.use(cors({
+    origin: process.env.FRONT_ORIGIN,
+    credentials: true
+}))
 
 mongoose
     .connect(process.env.MONGO_URI)
