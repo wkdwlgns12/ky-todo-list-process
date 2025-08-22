@@ -1,14 +1,14 @@
+
 .edit-wrap,
-.content-wrap {
+.content-wrap{
     display: flex;
     width: 100%;
     gap: 20px;
 }
-
 .TodoItem {
     display: flex;
     gap: 20px;
-    padding: 10px;
+    padding: 10px ;
     border-bottom: 1px solid #eee;
     /* justify-content: space-between; */
 }
@@ -17,13 +17,12 @@
     background-color: #f1f1f1;
 }
 
-.edit-wrap input {
+.edit-wrap input{
     flex: 1;
-    border: 1px solid #eee;
+    border:1px solid #eee ;
     border-radius: 5px;
 
 }
-
 .TodoItem .content {
     flex: 1;
 }
@@ -55,7 +54,7 @@
     background-color: rgb(255, 121, 112);
 }
 
-.TodoItem.isCompleted .content {
+.TodoItem.isCompleted .content{
     text-decoration: line-through;
     color: gray;
 }

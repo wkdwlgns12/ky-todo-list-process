@@ -1,14 +1,7 @@
-/* ✅ 최상위 래퍼 중앙 정렬 */
 .App {
-  min-height: 100vh;     /* or height: 100vh */
-  display: flex;
-  align-items: center;    /* 세로 중앙 */
-  justify-content: center;/* 가로 중앙 */
-  padding: 16px;          /* 선택: 가장자리 여백 */
-}
-
-/* 선택: 내부 감싸는 컨테이너가 있다면(예: .container) 폭 제한 */
-.container {
-  width: 100%;
-  max-width: 520px;       /* 카드 폭 정도 */
+    width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

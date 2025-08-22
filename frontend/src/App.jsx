@@ -7,7 +7,7 @@ import TodoList from './components/TodoList'
 function App() {
 
   const [todos, setTodos] = useState([])
-  const API = `${import.meta.env.VITE_API_URL}/api/todos`;
+  const API = `${import.meta.env.VITE_API_URL}/api/todos`
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -46,7 +46,6 @@ function App() {
       console.log("추가 실패", error)
     }
   }
-
   const onDelete = async (id) => {
     try {
       if (!confirm("정말 삭제할까요?")) return
@@ -64,7 +63,6 @@ function App() {
       console.error("삭제 실패", error)
     }
   }
-
   const onUpdateChecked = async (id, next) => {
 
     try {
@@ -111,8 +109,7 @@ function App() {
     }
 
   }
-
-    const onUpdate = async (id, next) => {
+  const onUpdate = async (id, next) => {
     try {
       const current = Array.isArray(todos) ? todos.find(t => t._id == id) : null
       if (!current) throw new Error("해당 ID의 todo가 없습니다.")
@@ -120,31 +117,36 @@ function App() {
       const { data } = await axios.put(`${API}/${id}`, next)
 
       const updated = data?.updated ?? data?.todo ?? data;
-        setTodos(
-          prev => prev.map(t => (t._id === updated._id ? updated : t))
-        )
+      setTodos(
+        prev => prev.map(t => (t._id === updated._id ? updated : t))
+      )
 
     } catch (error) {
-      console.error("Todo update 실패",error)
+      console.error("Todo update 실패", error)
     }
   }
 
+  const onUpdateTodo = async (id, next) => {
+    try {
+      await onUpdate(id, next)
+
+    } catch (error) {
+      console.error("Todo update 실패", error)
+
+    }
+  }
 
   return (
-  <div className="App">
-    <div className="container">{/* 선택: 없으면 생략 */}
+    <div className='App'>
       <Header />
       <TodoEditor onCreate={onCreate} />
       <TodoList
         todos={Array.isArray(todos) ? todos : []}
         onUpdateChecked={onUpdateChecked}
-        onUpdateText={onUpdateText}
-        onDelete={onDelete}
-      />
+        onUpdateTodo={onUpdateTodo}
+        onDelete={onDelete} />
     </div>
-  </div>
-)
-
+  )
 }
 
 export default App

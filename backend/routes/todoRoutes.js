@@ -95,21 +95,21 @@ router.patch("/:id/check", async (req, res) => {
     try {
         const { id } = req.params
         if (!ensureObjectId(id, res)) return
-        const { isCompleted } = req.body
+        const {isCompleted} = req.body
 
-        if (typeof isCompleted !== 'boolean') {
-            return res.status(400).json({ message: "isCompleted는 반드시 boolean이어야 합니다." })
+        if(typeof isCompleted !=='boolean'){
+            return res.status(400).json({message:"isCompleted는 반드시 boolean이어야 합니다."})
         }
 
         const updated = await Todo.findByIdAndUpdate(id,
-            { isCompleted },
-            { new: true, runValidators: true, context: 'query' }
+            {isCompleted},
+            {new:true,runValidators:true,context:'query'}
         )
         if (!updated) {
             return res.status(404).json({ message: '해당 Id의 todo가 없습니다.' })
         }
 
-        res.status(201).json({ message: "체크상태 수정하기 성공", todo: updated })
+        res.status(201).json({ message: "체크상태 수정하기 성공",todo: updated })
     } catch (error) {
         res.status(400).json({ error: "데이터를 불러오지 못했습니다." })
     }
@@ -118,21 +118,21 @@ router.patch("/:id/text", async (req, res) => {
     try {
         const { id } = req.params
         if (!ensureObjectId(id, res)) return
-        const { text } = req.body
+        const {text} = req.body
 
-        if (!text || !text.trim()) {
-            return res.status(400).json({ message: "text는 필수입니다." })
+        if(!text || !text.trim()){
+            return res.status(400).json({message:"text는 필수입니다."})
         }
 
         const updated = await Todo.findByIdAndUpdate(id,
-            { text: text.trim() },
-            { new: true, runValidators: true, context: 'query' }
+            {text:text.trim()},
+            {new:true,runValidators:true,context:'query'}
         )
         if (!updated) {
             return res.status(404).json({ message: '해당 Id의 todo가 없습니다.' })
         }
 
-        res.status(201).json({ message: "텍스트 수정하기 성공", todo: updated })
+        res.status(201).json({ message: "텍스트 수정하기 성공",todo: updated })
     } catch (error) {
         res.status(400).json({ error: "데이터를 불러오지 못했습니다." })
     }
